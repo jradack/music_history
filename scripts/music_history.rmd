@@ -1,0 +1,34 @@
+---
+title: "music_history"
+author: "Josh Radack"
+date: '2022-12-17'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+packs <- c("dplyr","lubridate","ggplot2")
+lapply(packs, library, character.only = TRUE)
+```
+
+# Load and clean data
+```{r data load}
+
+```
+
+```{r}
+top_arists <- scrobbles |> 
+  group_by(year) |> 
+  count(artist) |> 
+  arrange(year, -n, artist)
+
+top_arists
+```
+
+```{r}
+scrobbles |> 
+  ggplot(aes(x = factor(year))) +
+  geom_bar() +
+  labs(x = "Year", y = "Scrobbles")
+```
